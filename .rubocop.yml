@@ -1,0 +1,13 @@
+---
+inherit_from:
+  - https://relaxed.ruby.style/rubocop.yml
+
+require:
+  - rubocop-performance
+  - rubocop-rspec
+
+AllCops:
+  Exclude:
+    - bin/*
+  NewCops: enable
+  TargetRubyVersion: 3.0
