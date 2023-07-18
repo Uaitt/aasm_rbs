@@ -2,7 +2,12 @@
 
 source 'https://rubygems.org'
 
-gem 'rspec'
-gem 'rubocop'
-gem 'rubocop-performance'
-gem 'rubocop-rspec'
+gem 'aasm'
+
+group :development, :test do
+  gem 'activerecord'
+  gem 'rspec'
+  gem 'rubocop'
+  gem 'rubocop-performance'
+  gem 'rubocop-rspec'
+end
