@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/aasm_rbs'
+
+puts ''
+puts AasmRbs.run(ARGV[0] || '')
+puts ''
