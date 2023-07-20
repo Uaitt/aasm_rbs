@@ -1,5 +1,5 @@
 ---
-name: Linters
+name: Type checking
 
 on:
   push:
@@ -25,4 +25,4 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby }}
         bundler-cache: true
-    - run: bin/steep
+    - run: bin/steep check
