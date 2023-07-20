@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "spec_helper"
+require 'spec_helper'
 
 require_relative '../lib/aasm_rbs'
 require_relative 'classes/job'
