@@ -1,0 +1,18 @@
+module AasmRbs
+  class Output
+    attr_reader klass: Class
+    attr_accessor data: String
+
+    def initialize: (Class) -> String
+
+    def add_states: (Array[String]) -> Array[String]
+    def add_events: (Array[String]) -> Array[String]
+
+    def new_line: () -> String
+    def finalize: () -> String
+
+    def add_state_constants: (Array[String]) -> String
+    def add_state_scopes: (Array[String]) -> String
+    def add_predicate_states_methods: (Array[String]) -> Array[String]
+  end
+end

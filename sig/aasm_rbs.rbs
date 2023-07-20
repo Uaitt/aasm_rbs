@@ -1,0 +1,10 @@
+module AasmRbs
+  def self.run: (String) -> String
+end
+
+# There is yet no official RBS signatures for the AASM module that gets
+# included in a class. Therefore, the only think we can do in order to not
+# make Steep unhappy is to declare a dummy signature ourself.
+class Class
+  def aasm: () -> untyped
+end
