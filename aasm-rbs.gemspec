@@ -3,7 +3,7 @@
 require_relative 'lib/aasm_rbs/version'
 
 Gem::Specification.new do |spec|
-  spec.name = 'aasm-rbs'
+  spec.name = 'aasm_rbs'
   spec.version = AasmRbs::VERSION
   spec.summary = 'AASM RBS'
   spec.description = 'Easily generate RBS signatures for all the Ruby classes that implement a state-machine with AASM'
@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
 
   spec.author = 'Lorenzo Zabot'
   spec.email = ['lorenzozabot@gmail.com']
-  spec.homepage = 'https://github.com/Uaitt/aasm-rbs'
+  spec.homepage = 'https://github.com/Uaitt/aasm_rbs'
 
   spec.metadata = {
     'allowed_push_host' => 'https://rubygems.org',

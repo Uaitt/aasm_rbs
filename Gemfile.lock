@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    aasm-rbs (0.1.0)
+    aasm_rbs (0.1.0)
       aasm (~> 5)
 
 GEM
@@ -112,7 +112,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  aasm-rbs!
+  aasm_rbs!
   activerecord
   rspec
   rubocop

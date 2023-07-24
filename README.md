@@ -20,7 +20,7 @@ With this small gem, you can now generate all those signatures automatically wit
 Add the following line to your application's `Gemfile`:
 
 ```rb
-gem 'aasm-rbs'
+gem 'aasm_rbs'
 ```
 
 Then, execute `bundle install` in order to load the gem's code.
