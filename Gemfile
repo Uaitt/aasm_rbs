@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'aasm'
+gemspec
 
 group :development, :test do
   gem 'activerecord'
