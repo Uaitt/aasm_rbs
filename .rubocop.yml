@@ -10,5 +10,6 @@ AllCops:
   Exclude:
     - bin/*
     - vendor/**/*
+    - exe/*
   NewCops: enable
   TargetRubyVersion: 3.0

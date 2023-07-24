@@ -1,3 +1,9 @@
+PATH
+  remote: .
+  specs:
+    aasm_rbs (0.1.0)
+      aasm (~> 5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -106,7 +112,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  aasm
+  aasm_rbs!
   activerecord
   rspec
   rubocop
