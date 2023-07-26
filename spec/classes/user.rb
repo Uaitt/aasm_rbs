@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 require 'aasm'
-require 'active_record'
+require_relative 'application_record'
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   include AASM
 
-  aasm column: 'state' do
+  aasm column: :state do
     state :pending, initial: true
     state :approved
     state :rejected
