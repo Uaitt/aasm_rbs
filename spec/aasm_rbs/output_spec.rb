@@ -29,23 +29,22 @@ RSpec.describe AasmRbs::Output do
       it 'correctly adds the states signatures to the data' do
         states = klass.aasm.states.map(&:name)
         output.add_states(states)
-        output.finalize
-        expect(output.data).to eq(expected_rbs)
+        expect(output.finalize).to eq(expected_rbs)
       end
     end
 
-    context 'with an ActiveRecord model' do
+    context 'with an ActiveRecord model that enables AASM automatic scopes' do
       let(:klass) { User }
       let(:expected_rbs) do
         <<~RBS
-          class User < ActiveRecord::Base
+          class User < ApplicationRecord
             STATE_PENDING: String
             STATE_APPROVED: String
             STATE_REJECTED: String
 
-            def self.pending: () -> User::ActiveRecord_Relation
-            def self.approved: () -> User::ActiveRecord_Relation
-            def self.rejected: () -> User::ActiveRecord_Relation
+            def self.pending: () -> ::ActiveRecord_Relation
+            def self.approved: () -> ::ActiveRecord_Relation
+            def self.rejected: () -> ::ActiveRecord_Relation
 
             def pending?: () -> bool
             def approved?: () -> bool
@@ -57,8 +56,30 @@ RSpec.describe AasmRbs::Output do
       it 'correctly adds the states signatures to the data' do
         states = klass.aasm.states.map(&:name)
         output.add_states(states)
-        output.finalize
-        expect(output.data).to eq(expected_rbs)
+        expect(output.finalize).to eq(expected_rbs)
+      end
+    end
+
+    context 'with an ActiveRecord model that disables AASM automatic scopes' do
+      let(:klass) { Refund }
+      let(:expected_rbs) do
+        <<~RBS
+          class Refund < ApplicationRecord
+            STATE_PENDING: String
+            STATE_PROCESSED: String
+            STATE_FAILED: String
+
+            def pending?: () -> bool
+            def processed?: () -> bool
+            def failed?: () -> bool
+          end
+        RBS
+      end
+
+      it 'correctly adds the states signatures to the data' do
+        states = klass.aasm.states.map(&:name)
+        output.add_states(states)
+        expect(output.finalize).to eq(expected_rbs)
       end
     end
   end
@@ -88,16 +109,15 @@ RSpec.describe AasmRbs::Output do
       it 'correctly adds the events signatures to the data' do
         events = klass.aasm.events.map(&:name)
         output.add_events(events)
-        output.finalize
-        expect(output.data).to eq(expected_rbs)
+        expect(output.finalize).to eq(expected_rbs)
       end
     end
 
-    context 'with an ActiveRecord model' do
+    context 'with an ActiveRecord model that enables AASM automatic scopes' do
       let(:klass) { User }
       let(:expected_rbs) do
         <<~RBS
-          class User < ActiveRecord::Base
+          class User < ApplicationRecord
             def approve: (*untyped) -> bool
             def approve!: (*untyped) -> bool
             def approve_without_validation!: (*untyped) -> bool
@@ -113,8 +133,31 @@ RSpec.describe AasmRbs::Output do
       it 'correctly adds the events signatures to the data' do
         events = klass.aasm.events.map(&:name)
         output.add_events(events)
-        output.finalize
-        expect(output.data).to eq(expected_rbs)
+        expect(output.finalize).to eq(expected_rbs)
+      end
+    end
+
+    context 'with an ActiveRecord model that disables AASM automatic scopes' do
+      let(:klass) { Refund }
+      let(:expected_rbs) do
+        <<~RBS
+          class Refund < ApplicationRecord
+            def process: (*untyped) -> bool
+            def process!: (*untyped) -> bool
+            def process_without_validation!: (*untyped) -> bool
+            def may_process?: (*untyped) -> bool
+            def fail: (*untyped) -> bool
+            def fail!: (*untyped) -> bool
+            def fail_without_validation!: (*untyped) -> bool
+            def may_fail?: (*untyped) -> bool
+          end
+        RBS
+      end
+
+      it 'correctly adds the events signatures to the data' do
+        events = klass.aasm.events.map(&:name)
+        output.add_events(events)
+        expect(output.finalize).to eq(expected_rbs)
       end
     end
   end

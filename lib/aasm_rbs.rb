@@ -13,5 +13,7 @@ module AasmRbs
     output.new_line
     output.add_events(events)
     output.finalize
+  rescue StandardError
+    print "aasm_rbs received an invalid class name."
   end
 end

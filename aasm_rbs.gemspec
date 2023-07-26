@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name = 'aasm_rbs'
   spec.version = AasmRbs::VERSION
   spec.summary = 'AASM RBS'
-  spec.description = 'Easily generate RBS signatures for all the Ruby classes that implement a state-machine with AASM'
+  spec.description = 'Easily generate RBS signatures for all the AASM automatically generated methods and constants of your ruby classes.'
   spec.license = 'MIT'
 
   spec.required_ruby_version = '>= 3.0.0'
