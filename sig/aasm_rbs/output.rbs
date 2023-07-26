@@ -1,8 +1,5 @@
 module AasmRbs
   class Output
-    attr_reader klass: Class
-    attr_accessor data: String
-
     def initialize: (Class) -> String
 
     def add_states: (Array[String]) -> Array[String]
@@ -10,6 +7,11 @@ module AasmRbs
 
     def new_line: () -> String
     def finalize: () -> String
+
+    private
+
+    attr_reader klass: Class
+    attr_accessor data: String
 
     def add_state_constants: (Array[String]) -> String
     def add_state_scopes: (Array[String]) -> String
