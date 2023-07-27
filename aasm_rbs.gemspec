@@ -22,9 +22,9 @@ Gem::Specification.new do |spec|
     'rubygems_mfa_required' => 'true'
   }
 
-  spec.files = Dir['lib/**/*', 'LICENSE', 'README.md']
+  spec.files = Dir['exe/**', 'lib/**/*.rb', 'sig/**/*.rbs', 'LICENSE', 'README.md']
   spec.require_paths = ['lib']
-  spec.executables = 'exe/aasm_rbs'
+  spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.bindir = 'exe'
 
   spec.add_runtime_dependency 'aasm', '~> 5'
