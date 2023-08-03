@@ -1,6 +1,12 @@
 #!/usr/bin/env ruby
 
+unless File.exist?('./Rakefile') || File.exist?('./Gemfile')
+  abort 'Please run aasm_rbs from the project root.'
+end
+
 require_relative '../lib/aasm_rbs'
+
+AasmRbs.load_constants(ARGV[0] || '')
 
 $stdout.puts ''
 $stdout.puts AasmRbs.run(ARGV[0] || '')

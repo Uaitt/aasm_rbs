@@ -6,6 +6,8 @@ gemspec
 
 group :development, :test do
   gem 'activerecord'
+  gem 'rake'
+  gem 'rbs'
   gem 'rspec'
   gem 'rubocop'
   gem 'rubocop-performance'
