@@ -1,4 +1,7 @@
 module AasmRbs
+  Rake: untyped # there is yet no Rake official RBS
+
+  def self.load_constants: (String) -> void
   def self.run: (String) -> String?
 end
 

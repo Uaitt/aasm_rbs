@@ -25,4 +25,4 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby }}
         bundler-cache: true
-    - run: bin/steep check
+    - run: bin/rbs collection install && bin/steep check

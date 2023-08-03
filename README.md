@@ -1,4 +1,7 @@
 # AASM RBS Generator
+
+[![Gem Version](https://badge.fury.io/rb/aasm_rbs.svg)](https://badge.fury.io/rb/aasm_rbs) [![Gem Downloads](https://badgen.net/rubygems/dt/aasm_rbs)](https://rubygems.org/gems/aasm_rbs) [![Linters](https://github.com/Uaitt/aasm_rbs/actions/workflows/linters.yml/badge.svg)](https://github.com/Uaitt/aasm_rbs/actions/workflows/linters.yml) [![Specs](https://github.com/Uaitt/aasm_rbs/actions/workflows/specs.yml/badge.svg)](https://github.com/Uaitt/aasm_rbs/actions/workflows/specs.yml)
+
 Easily generate RBS signatures for all the AASM automatically generated methods and constants of your ruby classes.
 
 ## Description
@@ -26,10 +29,29 @@ gem 'aasm_rbs'
 Then, execute `bundle install` in order to load the gem's code.
 
 ## Usage
+At the moment AASM RBS only supports pure-ruby projects or Rails applications.
+
+This gem assumes that your project is arranged with a traditional structure:
+- If dealing with a Rails app, your classes should be in any folder nested inside of `app/` or `lib/`
+- If dealing with a Ruby project, your actual classes should go inside of `lib/` and arranged as:
+  ```
+  lib/
+  ├── foo/
+  │   ├── bar.rb # contains Foo::Bar
+  │   ├── baz.rb # contains Foo::Baz
+  │── foo.rb # contains Foo
+  ```
+
+For more information about how to structure your projects, take a look at the following articles:
+- [Autoloading and reloading constants](https://guides.rubyonrails.org/autoloading_and_reloading_constants.html) from the Rails guides
+- [Exploring the structure of a Ruby gem](https://www.cloudbees.com/blog/exploring-structure-ruby-gems) fantastic article from cloudbees (a little bit old but still relevant)
+
 Generating the RBS signatures is as easy as launching the following command from the command-line:
 ```
-bundle exec aasm_rbs ClassName
+bundle exec aasm_rbs Namespace::ClassName
 ```
+
+If your class is namespaced inside of other modules/classes, please pass the whole name as you see in the previous command to AASM RBS or it won't be able to infer the path.
 
 The generated signatures will appear in `stdout`.
 
