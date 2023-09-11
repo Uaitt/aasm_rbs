@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 unless File.exist?('./Rakefile') || File.exist?('./Gemfile')
-  abort 'Please run aasm_rbs from the project root.'
+  abort('Please run aasm_rbs from the project root.')
 end
 
 require_relative '../lib/aasm_rbs'

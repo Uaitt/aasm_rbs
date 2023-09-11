@@ -7,10 +7,10 @@ gemspec
 group :development, :test do
   gem 'activerecord'
   gem 'rake'
-  gem 'rbs'
+  gem 'rbs', require: false
   gem 'rspec'
   gem 'rubocop'
   gem 'rubocop-performance'
   gem 'rubocop-rspec'
-  gem 'steep'
+  gem 'steep', require: false
 end

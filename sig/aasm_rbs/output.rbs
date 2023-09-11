@@ -1,9 +1,12 @@
 module AasmRbs
   class Output
-    def initialize: (Class) -> String
+    attr_reader data: String
 
-    def add_states: (Array[String]) -> Array[String]
-    def add_events: (Array[String]) -> Array[String]
+    def initialize: (Class klass) -> String
+
+    def add_states: (Array[String] states, ?::Hash[untyped, untyped] opts) -> String
+    def add_events: (Array[String] events) -> Array[String]
+    def add_active_record_relation: () -> String
 
     def new_line: () -> String
     def finalize: () -> String
@@ -11,10 +14,10 @@ module AasmRbs
     private
 
     attr_reader klass: Class
-    attr_accessor data: String
+    attr_writer data: String
 
-    def add_state_constants: (Array[String]) -> String
-    def add_state_scopes: (Array[String]) -> String
-    def add_predicate_states_methods: (Array[String]) -> Array[String]
+    def add_state_constants: (Array[String] states) -> String
+    def add_state_scopes: (Array[String] states) -> String
+    def add_predicate_states_methods: (Array[String] states) -> String
   end
 end

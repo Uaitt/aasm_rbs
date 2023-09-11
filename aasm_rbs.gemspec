@@ -5,7 +5,7 @@ require_relative 'lib/aasm_rbs/version'
 Gem::Specification.new do |spec|
   spec.name = 'aasm_rbs'
   spec.version = AasmRbs::VERSION
-  spec.summary = 'AASM RBS'
+  spec.summary = 'RBS signatures for AASM classes'
   spec.description = 'Easily generate RBS signatures for all the AASM automatically generated methods and constants of your ruby classes.'
   spec.license = 'MIT'
 
