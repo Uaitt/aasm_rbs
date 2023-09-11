@@ -1,8 +1,8 @@
 module AasmRbs
   Rake: untyped # there is yet no Rake official RBS
 
-  def self.load_constants: (String) -> void
-  def self.run: (String) -> String?
+  def self.load_constants: (String klass_name) -> void
+  def self.run: (String klass_name, ?::Hash[untyped, untyped] opts) -> String?
 end
 
 # There are yet no official RBS signatures for the AASM module that gets
