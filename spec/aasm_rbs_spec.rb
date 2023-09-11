@@ -44,41 +44,6 @@ RSpec.describe AasmRbs do
       end
     end
 
-    context 'with an ActiveRecord model that enables AASM automatic scopes' do
-      let(:klass_name) { 'User' }
-      let(:expected_rbs) do
-        <<~RBS
-          class User < ApplicationRecord
-            STATE_PENDING: String
-            STATE_APPROVED: String
-            STATE_REJECTED: String
-
-            def self.pending: () -> ::ActiveRecord_Relation
-            def self.approved: () -> ::ActiveRecord_Relation
-            def self.rejected: () -> ::ActiveRecord_Relation
-
-            def pending?: () -> bool
-            def approved?: () -> bool
-            def rejected?: () -> bool
-
-            def approve: (*untyped) -> bool
-            def approve!: (*untyped) -> bool
-            def approve_without_validation!: (*untyped) -> bool
-            def may_approve?: (*untyped) -> bool
-            def reject: (*untyped) -> bool
-            def reject!: (*untyped) -> bool
-            def reject_without_validation!: (*untyped) -> bool
-            def may_reject?: (*untyped) -> bool
-          end
-        RBS
-      end
-
-      it 'returns the right RBS' do
-        actual_output = described_class.run(klass_name)
-        expect(actual_output).to eq(expected_rbs)
-      end
-    end
-
     context 'with an ActiveRecord model that disables AASM automatic scopes' do
       let(:klass_name) { 'Refund' }
       let(:expected_rbs) do
@@ -107,6 +72,58 @@ RSpec.describe AasmRbs do
       it 'returns the right RBS' do
         actual_output = described_class.run(klass_name)
         expect(actual_output).to eq(expected_rbs)
+      end
+    end
+
+    context 'with an ActiveRecord model that enables AASM automatic scopes' do
+      let(:klass_name) { 'User' }
+      let(:expected_rbs) do
+        <<~RBS
+          class User < ApplicationRecord
+            STATE_PENDING: String
+            STATE_APPROVED: String
+            STATE_REJECTED: String
+
+            def self.pending: () -> ActiveRecord_Relation
+            def self.approved: () -> ActiveRecord_Relation
+            def self.rejected: () -> ActiveRecord_Relation
+
+            def pending?: () -> bool
+            def approved?: () -> bool
+            def rejected?: () -> bool
+
+            def approve: (*untyped) -> bool
+            def approve!: (*untyped) -> bool
+            def approve_without_validation!: (*untyped) -> bool
+            def may_approve?: (*untyped) -> bool
+            def reject: (*untyped) -> bool
+            def reject!: (*untyped) -> bool
+            def reject_without_validation!: (*untyped) -> bool
+            def may_reject?: (*untyped) -> bool
+
+            class ActiveRecord_Relation < ::ActiveRecord::Relation
+              include GeneratedRelationMethods
+              include _ActiveRecord_Relation[User, Integer]
+              include Enumerable[User]
+            end
+          end
+        RBS
+      end
+
+      it 'returns the right RBS' do
+        actual_output = described_class.run(klass_name)
+        expect(actual_output).to eq(expected_rbs)
+      end
+    end
+
+    context "with an invalid class name" do
+      let(:klass) { "SomeClass" }
+
+      it "correctly aborts", :aggregate_failures do
+        expect { described_class.run(klass) }.to raise_error(SystemExit) do |error|
+          expect(error.status).to eq(1)
+          expect(error.message).to eq('aasm_rbs received an invalid class name.')
+        end
       end
     end
   end
