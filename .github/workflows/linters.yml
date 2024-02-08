@@ -15,7 +15,7 @@ jobs:
   test:
     strategy:
       matrix:
-        ruby: ['3.0']
+        ruby: ['3.3']
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
