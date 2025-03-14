@@ -27,5 +27,5 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.bindir = 'exe'
 
-  spec.add_runtime_dependency 'aasm', '~> 5'
+  spec.add_dependency 'aasm', '~> 5'
 end
