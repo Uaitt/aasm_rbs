@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.description = 'Easily generate RBS signatures for all the AASM automatically generated methods and constants of your ruby classes.'
   spec.license = 'MIT'
 
-  spec.required_ruby_version = '>= 3.0.0'
+  spec.required_ruby_version = '>= 3.1.0'
 
   spec.author = 'Lorenzo Zabot'
   spec.email = ['lorenzozabot@gmail.com']
