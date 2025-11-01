@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    aasm_rbs (0.2.1)
+    aasm_rbs (0.3.1)
       aasm (~> 5)
 
 GEM
